@@ -257,7 +257,7 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         precioTratamientoEditar  = new JTextField();
         editarTratamiento = new JButton("Editar");
         eliminarTratamiento= new JButton("Eliminar");
-        textoListaTratamiento = new JLabel("Seleccione la ID del cliente");
+        textoListaTratamiento = new JLabel("Seleccione la ID del tratamiento");
         listaTratamientos = new JComboBox();
         
         for(int i=0;i<tratamientos.length;i++){
@@ -387,8 +387,10 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         textoAnadirCliente.setVisible(true);
         textoNombreCliente.setVisible(true);
         nombreCliente.setVisible(true);
+        nombreCliente.setText("");
         textoCedulaCliente.setVisible(true);
         cedulaCliente.setVisible(true);
+        cedulaCliente.setText("");
         guardarCliente.setVisible(true);
     }
     private void mostrarPantallaEditarCliente(){
@@ -408,8 +410,10 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         textoAnadirTratamiento.setVisible(true);
         textoDescripcionTratamiento.setVisible(true);
         descripcionTratamiento.setVisible(true);
+        descripcionTratamiento.setText("");
         textoPrecioTratamiento.setVisible(true);
         precioTratamiento.setVisible(true);
+        precioTratamiento.setText("");
         guardarTratamiento.setVisible(true);
     }
     private void mostrarPantallaEditarTratamiento(){
@@ -572,11 +576,11 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
             showMessageDialog(null, "No hay espacio para más clientes.");
         }
         if(e.getSource()==editarCliente){
-            this.limpiarPantalla();
-            this.mostrarPantallaEditarCliente();
             if(!nombreClienteEditar.getText().isEmpty() || !cedulaClienteEditar.getText().isEmpty()){
                 clientes[(int)listaClientes.getSelectedItem()].ModificarCliente(nombreClienteEditar.getText(), cedulaClienteEditar.getText());
                 showMessageDialog(null, "Editado Correctamente.");
+                 this.limpiarPantalla();
+                 this.mostrarPantallaEditarCliente();
             }else{
                 showMessageDialog(null, "Porfavor llene todos los espacios.");
                 return;
@@ -584,6 +588,7 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         }
         if(e.getSource()==eliminarCliente){
             clientes[(int)listaClientes.getSelectedItem()] = null;
+            showMessageDialog(null, "Eliminado Correctamente");
             this.mostrarPantallaEditarCliente();
         }
         if(e.getSource() == insertarTratamientos){
@@ -596,7 +601,7 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         }
         if(e.getSource() == guardarTratamiento){
             if(!descripcionTratamiento.getText().isEmpty() || !descripcionTratamiento.getText().isEmpty()){
-                for(int i=0; i< clientes.length ; i++){
+                for(int i=0; i< tratamientos.length ; i++){
                     if(tratamientos[i]==null){
                         tratamientos[i] = new Tratamiento(descripcionTratamiento.getText(), Double.valueOf(precioTratamiento.getText()));
                         showMessageDialog(null, "Guardado Correctamente.");
@@ -613,13 +618,14 @@ public class Proyectofinal extends JFrame implements ActionListener, ItemListene
         }
         if(e.getSource()==eliminarTratamiento){
             tratamientos[(int)listaTratamientos.getSelectedItem()] = null;
+            showMessageDialog(null, "Eliminado Correctamente");
             this.mostrarPantallaEditarTratamiento();
         }
         if(e.getSource()==editarTratamiento){
-            this.limpiarPantalla();
-            this.mostrarPantallaEditarTratamiento();
             if(!descripcionTratamientoEditar.getText().isEmpty() || !precioTratamientoEditar.getText().isEmpty()){
                 tratamientos[(int)listaTratamientos.getSelectedItem()].ModificarTratamiento(descripcionTratamientoEditar.getText(), Double.valueOf(precioTratamientoEditar.getText()));
+                this.limpiarPantalla();
+                this.mostrarPantallaEditarTratamiento();
                 showMessageDialog(null, "Editado Correctamente.");
             }else{
                 showMessageDialog(null, "Porfavor llene todos los espacios.");
