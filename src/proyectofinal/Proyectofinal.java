@@ -1,3 +1,9 @@
+/*
+    Curso de Fundamentos de Programación con Jorge Bastos (Proyecto Final de Síntesis)
+    Desarrollado por André López y Jafeth Pérez
+    Link de GitHub: https://github.com/Anderlyn/161014G4-Fundamentos_Programacion
+*/
+
 package proyectofinal;
 import javax.swing.*;
 import java.awt.*;
